@@ -4,7 +4,7 @@ Aplikasi jadwal sholat online bot menggunakan Twitter
 
 ## Deskripsi
 
-Returns all prayer times for a specific date in a particular city.
+Returns all prayer times for a specific date in a particular city using [aladhan API](https://aladhan.com/prayer-times-api).
 
 ## Parameter
 
