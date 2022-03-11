@@ -6,7 +6,7 @@ library(RPostgreSQL)
 # https://www.islamicfinder.org/world/indonesia/
 # https://aladhan.com/prayer-times-api
 
-city <- URLencode("Aceh")
+city <- URLencode("Kota Bogor")
 country <- URLencode("Indonesia")
 method <- 8
 
