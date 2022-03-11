@@ -17,7 +17,7 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Install RPostgreSQL package
         run: Rscript -e 'install.packages("RPostgreSQL", dependencies = TRUE)'
-      - name: Install rvest package
+      - name: Install jsonlite package
         run: Rscript -e 'install.packages("jsonlite", dependencies = TRUE)'
-      - name: Getting data from aladhan.com/prayer-times-api
+      - name: Getting data from aladhan.com/prayer-times-api and add to database
         run: Rscript prayers-api.R

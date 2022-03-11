@@ -1,5 +1,7 @@
 # Twitter Bot Jadwal Sholat 
 
+[![extracting](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-api.yml/badge.svg)](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-api.yml) [![postwit](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-post.yml/badge.svg)](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-post.yml) [![](https://img.shields.io/badge/Twitter-@alfabot562-white?style=flat&labelColor=blue&logo=Twitter&logoColor=white)](https://twitter.com/alfabot562)
+
 Aplikasi jadwal sholat online bot menggunakan Twitter
 
 ## Deskripsi

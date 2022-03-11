@@ -10,36 +10,42 @@ con <- dbConnect(
   password = Sys.getenv("ELEPHANT_SQL_PASSWORD")
 )
 
-covid <- dbReadTable(con, "covid")
-tweetcovid <- covid[nrow(covid),]
+prayer <- dbReadTable(con, "prayer")
 
-## 1st Hash Tag
-hashtag <- c("MDS","rvest","rtweet", "ElephantSQL","bot","covid","RPostgreSQL")
-samp_word <- sample(hashtag, 3)
+today <- format(Sys.time(), "%d-%m-%Y")
+tweetprayer <- prayer[which(today==prayer$date),]
 
-## Status Message
-status_details <- paste0(
-  "Update terakhir kasus corona di Indonesia\n",
-  "📈 Kasus Aktif:", tweetcovid[2],"\n",
-  "☠️ Meninggal:", tweetcovid[3],"\n",
-  "🩹 Sembuh:", tweetcovid[4],"\n\n",
-  "Source: https://worldometers.info/coronavirus/",
-  "\n\n",
-  paste0("#", samp_word, collapse = " "))
-
-## Create Twitter token
-token <- create_token(
-  app = "covidMD",
-  consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
-  consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
-  access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
-  access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
-)
-
-## Post the image to Twitter
-post_tweet(
-  status = status_details,
-  token = token
-)
+if(nrow(tweetprayer) != 0){
+  hour <- format(Sys.time(), format = "%R")
+  all_time <- unlist(tweetprayer[, 6:10])
+  
+  # calculate time difference
+  hourdiff <- which.min(as.difftime(c(hour, all_time), format = "%H:%M"))
+  
+  ## 1st Hash Tag
+  hashtag <- c("MDS","jsonlite","rtweet", "ElephantSQL","bot","prayers","RPostgreSQL", "sholat")
+  samp_word <- sample(hashtag, 3)
+  
+  ## Status Message
+  status_details <- paste0(
+    "🕌 Pukul ", all_time[names(hourdiff)], ", waktunya ",  names(hourdiff), " untuk ", tweetprayer$city, " dan sekitarnya\n",
+    "\n\n",
+    paste0("#", samp_word, collapse = " "))
+  
+  ## Create Twitter token
+  token <- create_token(
+    app = "sholatBot",
+    consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
+    consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
+    access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
+    access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
+  )
+  
+  ## Post the image to Twitter
+  post_tweet(
+    status = status_details,
+    token = token
+  )
+} 
 
 on.exit(dbDisconnect(con))
