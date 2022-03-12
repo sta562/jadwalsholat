@@ -2,11 +2,11 @@ name: postwit
 
 on:
   schedule:
-    - cron: '30 3 * * *'  # at 3:30
-    - cron: '30 11 * * *'  # at 11:30
-    - cron: '30 14 * * *'  # at 14:30
-    - cron: '30 17 * * *'  # at 17:30
-    - cron: '30 18 * * *'  # at 18:30
+    - cron: '30 21 * * *'  # fajr at 3:30 (UTC - 7)
+    - cron: '30 4 * * *'  # dhuhr at 11:30 (UTC - 7)
+    - cron: '30 7 * * *'  # asr at 14:30 (UTC - 7)
+    - cron: '30 10 * * *'  # maghrib at 17:30 (UTC - 7)
+    - cron: '30 11 * * *'  # isha at 18:30 (UTC - 7)
 
 jobs:
   publish-data:
