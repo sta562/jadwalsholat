@@ -2,7 +2,7 @@ name: postwit
 
 on:
   schedule:
-    - cron: '30 21 * * *'  # fajr at 3:30 (UTC - 7)
+    - cron: '30 20 * * *'  # fajr at 3:30 (UTC - 7)
     - cron: '30 4 * * *'  # dhuhr at 11:30 (UTC - 7)
     - cron: '30 7 * * *'  # asr at 14:30 (UTC - 7)
     - cron: '30 10 * * *'  # maghrib at 17:30 (UTC - 7)
