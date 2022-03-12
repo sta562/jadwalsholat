@@ -20,12 +20,16 @@ tweetprayer <- prayer[which(today==prayer$date),]
 
 message("Checking the availability of new prayers time ")
 if(nrow(tweetprayer) != 0){
-  hour <- format(Sys.time(), format = "%R")
-  all_time <- unlist(tweetprayer[, 6:10])
+  hour <- strptime(format(Sys.time(), format = "%R"),
+                   format = "%H:%M",
+                   tz="Asia/Jakarta")
+  all_time <- strptime(unlist(tweetprayer[, 6:10]), 
+                       format = "%H:%M",
+                       tz="Asia/Jakarta")
   
   message("Checking the time difference")
   # calculate time difference
-  hourdiff <- which.min(as.difftime(c(hour, all_time), format = "%H:%M"))
+  hourdiff <- which.min( abs(difftime(hour, all_time, units = "hours")) )
   
   message("Set status and random hash tag")
   ## 1st Hash Tag
@@ -34,7 +38,7 @@ if(nrow(tweetprayer) != 0){
   
   ## Status Message
   status_details <- paste0(
-    "🕌 Pukul ", all_time[names(hourdiff)], ", waktunya ",  names(hourdiff), " untuk ", tweetprayer$city, " dan sekitarnya\n",
+    "🕌 Pukul ", format(all_time[names(hourdiff)], format="%R"), ", waktunya ",  names(hourdiff), " untuk ", tweetprayer$city, " dan sekitarnya\n",
     "\n\n",
     paste0("#", samp_word, collapse = " "))
   
