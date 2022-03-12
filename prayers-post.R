@@ -1,6 +1,8 @@
+message("Load the libraries")
 library(RPostgreSQL)
 library(rtweet)
 
+message("Connect to ElephantSQL database server")
 con <- dbConnect(
   dbDriver("PostgreSQL"),
   dbname = Sys.getenv("ELEPHANT_SQL_DBNAME"),
@@ -10,18 +12,22 @@ con <- dbConnect(
   password = Sys.getenv("ELEPHANT_SQL_PASSWORD")
 )
 
+message("Retrieve the information from table `public`.`prayer`")
 prayer <- dbReadTable(con, "prayer")
 
 today <- format(Sys.time(), "%d-%m-%Y")
 tweetprayer <- prayer[which(today==prayer$date),]
 
+message("Checking the availability of new prayers time ")
 if(nrow(tweetprayer) != 0){
   hour <- format(Sys.time(), format = "%R")
   all_time <- unlist(tweetprayer[, 6:10])
   
+  message("Checking the time difference")
   # calculate time difference
   hourdiff <- which.min(as.difftime(c(hour, all_time), format = "%H:%M"))
   
+  message("Set status and random hash tag")
   ## 1st Hash Tag
   hashtag <- c("MDS","jsonlite","rtweet", "ElephantSQL","bot","prayers","RPostgreSQL", "sholat")
   samp_word <- sample(hashtag, 3)
@@ -41,6 +47,7 @@ if(nrow(tweetprayer) != 0){
     access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
   )
   
+  message("Post the status to twitter")
   ## Post the image to Twitter
   post_tweet(
     status = status_details,
@@ -48,4 +55,5 @@ if(nrow(tweetprayer) != 0){
   )
 } 
 
+message("Disconnect the database")
 on.exit(dbDisconnect(con))

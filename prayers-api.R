@@ -1,3 +1,4 @@
+message("Load the libraries")
 # Set library ----
 library(jsonlite)
 library(RPostgreSQL)
