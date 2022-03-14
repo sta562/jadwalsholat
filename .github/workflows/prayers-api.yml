@@ -2,7 +2,7 @@ name: extracting
 
 on:
   schedule:
-    - cron: '0 11 * * *'  # every day at 18.00 (WIB - 7)
+    - cron: '0 18 * * *'  # every day at 01.00 (WIB - 7)
 
 jobs:
   save-data:
