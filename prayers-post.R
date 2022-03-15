@@ -2,6 +2,9 @@ message("Load the libraries")
 library(RPostgreSQL)
 library(rtweet)
 
+message("Set timezone")
+Sys.setenv(TZ = "Asia/Bangkok")
+
 message("Connect to ElephantSQL database server")
 con <- dbConnect(
   dbDriver("PostgreSQL"),
