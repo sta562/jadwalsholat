@@ -1,4 +1,4 @@
-message("Load the libraries")
+message("Load the RPostgreSQL and rtweet library")
 library(RPostgreSQL)
 library(rtweet)
 
