@@ -1,4 +1,4 @@
-message("Load the RPostgreSQL and rtweet library")
+message("Load the RPostgreSQL and rtweet library aja")
 library(RPostgreSQL)
 library(rtweet)
 
