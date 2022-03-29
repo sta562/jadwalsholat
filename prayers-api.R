@@ -32,7 +32,7 @@ con <- dbConnect(
 message("Checking table `public`.`prayer` if exists")
 # check table if exists
 if(!dbExistsTable(con, "prayer")) {
-  prayer <- data.frame(no=integer(), date=character(), city=character(), lat=character(), lng=character(),
+  prayer <- data.frame(no=integer(), date=character(), city=character(), lat=character(), lng=character(), Imsak=character(),
                        fajr=character(), dhuhr=character(), asr=character(), maghrib= character(), isha=character())
   dbCreateTable(con, "prayer", prayer)
 } 
@@ -47,18 +47,19 @@ message("Initiate all attribute")
 date <- get_timings$data$date$gregorian$date
 lat <- get_timings$data$meta$latitude
 lng <- get_timings$data$meta$longitude
+Imsak<-get_timings$data$timings$Imsak
 fajr <- get_timings$data$timings$Fajr
 dhuhr <- get_timings$data$timings$Dhuhr
 asr <- get_timings$data$timings$Asr
 maghrib <- get_timings$data$timings$Maghrib
 isha <- get_timings$data$timings$Isha
-newprayer <- data.frame(no = rows + 1, date=date, city=ind_city, lat=lat, lng=lng,
+newprayer <- data.frame(no = rows + 1, date=date, city=ind_city, lat=lat, lng=lng, Imsak=Imsak,
                         fajr=fajr, dhuhr=dhuhr, asr=asr, maghrib=maghrib, isha=isha)
 
 message("Insert new data to table `public`.`prayer`")
 dbWriteTable(con = con, name = "prayer", value = newprayer, append = TRUE, row.names = FALSE, overwrite=FALSE)
 
-message("Disconnect the database")
+message("Disconnect the database, see you again")
 on.exit(dbDisconnect(con)) 
 
 
