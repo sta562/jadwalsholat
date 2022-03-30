@@ -8,7 +8,7 @@ library(RPostgreSQL)
 # https://aladhan.com/prayer-times-api
 
 message("Get prayers timing from Aladhan API")
-ind_city <- "Kota Bogor"
+ind_city <- "Kota Padang"
 ind_country <- "Indonesia"
 
 city <- URLencode(ind_city)
