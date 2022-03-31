@@ -51,7 +51,7 @@ Mengembalikan semua waktu sholat untuk tanggal tertentu di kota tertentu menggun
 
 `city` = Kota Padang \
 `country` = Indonesia \
-`method` = 8 \
+`method` = 8 
 
 metode yang digunakan adalah metode nomor 8 yaitu metode Gulf Region, karena metode tersebut memiliki hasil perhitungan waktu sholat yang paling mendekati waktu sholat sebenarnya di Indonesia.
 Parameter lainnya dibiarkan kosong dan menggunakan nilai defaultnya.
