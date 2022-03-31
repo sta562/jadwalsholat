@@ -1,12 +1,8 @@
-name: postwit
+name: mention_check
 
 on:
   schedule:
-    - cron: '30 20 * * *'  # imsak & fajr at 03:30 (WIB - 7)
-    - cron: '30 4 * * *'  # dhuhr at 11:30 (WIB - 7)
-    - cron: '30 7 * * *'  # asr at 14:30 (WIB - 7)
-    - cron: '30 10 * * *'  # maghrib at 17:30 (WIB - 7)
-    - cron: '0 12 * * *'  # isha at 19:00 (WIB - 7)
+    - cron: '*/15 * * * *'  # check every 15 minutes
 
 jobs:
   publish-data:
@@ -28,4 +24,4 @@ jobs:
       - name: Install RPostgreSQL package
         run: Rscript -e 'install.packages("RPostgreSQL", dependencies = TRUE)'
       - name: Create and post tweet
-        run: Rscript prayers-post.R
+        run: Rscript prayers-reply.R

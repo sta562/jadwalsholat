@@ -26,7 +26,7 @@ if(nrow(tweetprayer) != 0){
   hour <- strptime(format(Sys.time(), format = "%R"),
                    format = "%H:%M",
                    tz="Asia/Jakarta")
-  all_time <- strptime(unlist(tweetprayer[, 6:10]), 
+  all_time <- strptime(unlist(tweetprayer[, 6:11]), 
                        format = "%H:%M",
                        tz="Asia/Jakarta")
   
@@ -41,7 +41,7 @@ if(nrow(tweetprayer) != 0){
   
   ## Status Message
   status_details <- paste0(
-    "🕌 Pukul ", format(all_time[names(hourdiff)], format="%R"), ", waktunya ",  names(hourdiff), " untuk ", tweetprayer$city, " dan sekitarnya\n",
+    "🕌 Akan tiba waktu ", names(hourdiff), " untuk ", tweetprayer$city, " dan sekitarnya pada pukul ", format(all_time[names(hourdiff)], format="%R"), "\n",
     "\n\n",
     paste0("#", samp_word, collapse = " "))
   
@@ -60,6 +60,16 @@ if(nrow(tweetprayer) != 0){
     status = status_details,
     token = token
   )
+  if(names(hourdiff)=="imsak"){
+    status_details_fajr <- paste0(
+      "🕌 Akan tiba waktu subuh untuk ", tweetprayer$city, " dan sekitarnya pada pukul ", format(all_time['fajr'], format="%R"), "\n",
+      "\n\n",
+      paste0("#", samp_word, collapse = " "))
+    post_tweet(
+      status = status_details_fajr,
+      token = token
+    )
+  }
 } 
 
 message("Disconnect the database")
