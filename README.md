@@ -1,6 +1,6 @@
 # Twitter Bot Jadwal Sholat 
 
-[![extracting](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-api.yml/badge.svg)](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-api.yml) [![postwit](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-post.yml/badge.svg)](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-post.yml) [![](https://img.shields.io/badge/Twitter-@SholatBot-white?style=flat&labelColor=blue&logo=Twitter&logoColor=white)](https://twitter.com/SholatBot)
+[![extracting](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-api.yml/badge.svg)](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-api.yml) [![postwit](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-post.yml/badge.svg)](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-post.yml) [![mention_check](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-reply.yml/badge.svg)](https://github.com/sta562/jadwalsholat/actions/workflows/prayers-reply.yml) [![](https://img.shields.io/badge/Twitter-@SholatBot-white?style=flat&labelColor=blue&logo=Twitter&logoColor=white)](https://twitter.com/SholatBot)
 
 Aplikasi jadwal sholat online bot menggunakan Twitter. Jadwal sholat yang akan dipost melalui tweets pada SholatBot yaitu jadwal sholat wajib 5 waktu dan ditambahkan jadwal imsak. 
 
@@ -49,9 +49,9 @@ Mengembalikan semua waktu sholat untuk tanggal tertentu di kota tertentu menggun
 
 ## Parameter yang diatur pada pengambilan data
 
-city = Kota Padang
-country = Indonesia
-method = 8
+`city` = Kota Padang \
+`country` = Indonesia \
+`method` = 8 \
 
 metode yang digunakan adalah metode nomor 8 yaitu metode Gulf Region, karena metode tersebut memiliki hasil perhitungan waktu sholat yang paling mendekati waktu sholat sebenarnya di Indonesia.
 Parameter lainnya dibiarkan kosong dan menggunakan nilai defaultnya.
