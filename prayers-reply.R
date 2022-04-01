@@ -50,7 +50,8 @@ if(nrow(mention_list) > 0){
   ## Post the image to Twitter
   post_tweet(
     status = status_details,
-    token = token
+    token = token,
+    in_reply_to_status_id = mention_who
   )
   
   message("Disconnect the database")
